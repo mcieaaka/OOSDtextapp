@@ -50,10 +50,10 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script>
-    var io = io(window.location.href);
-    socket.on('messageFromServer',(data)=>{
+    var io = io("http://localhost:3000");
+    io.on('messageFromServer',(data)=>{
         console.log(data);
-        socket.emit('messageToServer',{data:"This from Client"})
+        io.emit('messageToServer',{data:"This from Client"})
     })
 </script>
 <%- include ('./partials/footer.ejs') %>

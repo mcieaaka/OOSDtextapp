@@ -1,8 +1,7 @@
 const express = require('express');
 var app = express();
 const path = require('path');
-const http = require('http').Server(app);
-const io = require("socket.io")(http);
+const socketio = require("socket.io")
 
 const passport = require("passport");
 const mongoose = require("mongoose");
@@ -20,13 +19,6 @@ app.use(express.static(path.join(__dirname + "/public")));
 //DqfAOzgQadYFYuIL
 mongoose.connect("mongodb+srv://Harshit:DqfAOzgQadYFYuIL@textchatapp.ef8gl.mongodb.net/TextChatApp?retryWrites=true&w=majority")
 require("./passport-setup.js");
-
-io.on("connection", function(socket){
-  socket.emit('messageFromServer',{data:"Welcome to server"});
-  socket.on('messageToServer',(dfromC)=>{
-    console.log(dfromC);
-  })
-});
 
 app.use(function (req, res, next) {
   res.locals.currUser = req.user;
@@ -132,6 +124,11 @@ app.get("/logout", (req, res) => {
 
 
 var port = process.env.PORT || 3000;
-app.listen(port, function(){
-    console.log("Text Chat Sever at 3000");
-})
+const exserver= app.listen(port);
+const io = socketio(exserver);
+io.on("connection", function(socket){
+  socket.emit('messageFromServer',{data:"Welcome to server"});
+  socket.on('messageToServer',(dfromC)=>{
+    console.log(dfromC);
+  })
+});
