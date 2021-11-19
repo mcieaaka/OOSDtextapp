@@ -1,0 +1,27 @@
+<%- include ('./partials/header.ejs') %>
+<div>
+    <div class="headbar">
+        <h3>EZ Chat App</h3>
+        <span>
+            <a style="text-decoration: none; color:white" href="/home">Back to Home</a>
+        </span>
+    </div>
+    <div style="display: grid;place-items: center;">
+        <div><img width="200" src="<%=u.google.picture%>"></div>
+        <div>
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td><%=u.name%></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><%=u.email%></td>
+                </tr>
+            </table>
+        </div>
+        <a class="btn btn-primary loginbt" href="/logout">Logout</a>
+    </div>
+
+</div>
+<%- include ('./partials/footer.ejs') %>

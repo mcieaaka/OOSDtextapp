@@ -1,0 +1,47 @@
+<%- include ('./partials/header.ejs') %>
+<div>
+    <div class="headbar">
+        <h3>EZ Chat App</h3>
+        <span>
+            <a href="/profile"><img width="30" src="/assets/usersvg.svg"></a>
+        </span>
+    </div>
+    <div>
+        <% if(u.chats.length > 0) { %>
+            <% u.chats.reverse().forEach((el)=>{ %>
+                <% if(el.a1.id==u._id){ %>
+                    <div class="contact">
+                        <form method="get" action="/msg/<%=el._id%>" onclick="submit()">
+                            <img class ="prof" src="<%= el.a2.pic %>">
+                            <p>
+                                <%=el.a2.name %>
+                                <br><%=el.timestamp.toDateString() %>
+                            </p>
+                        </form>
+                    </div>
+                <%}else{%>
+                    <div class="contact">
+                        <form method="get" action="/msg/<%=el._id%>" onclick="submit()">
+                            <img class ="prof" src="<%= el.a1.pic %>">
+                            <p>
+                                <%=el.a1.name %>
+                                <br><%=el.timestamp.toDateString() %>
+                            </p>
+                        </form>
+                    </div>
+                <%}%>
+            <%})%>
+        <%}else{%>
+            <div class="nochats">
+                <p>
+                    Start New Chat<br>
+                    <img class="imgsetup" src="/assets/chaticon.svg">
+                </p>
+            </div>
+        <%}%>
+    </div>
+    <div class="pluscont">
+        <a href="/new"><img src="/assets/plusbt.svg"></a>
+    </div>
+</div>
+<%- include ('./partials/footer.ejs') %>

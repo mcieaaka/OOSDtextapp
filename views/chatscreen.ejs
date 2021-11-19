@@ -1,0 +1,59 @@
+<%- include ('./partials/header.ejs') %>
+<style>
+    body{
+        background-image: url("/assets/chatback.svg");
+        background-size: cover;
+    }
+</style>
+<div class="chatscreendiv">
+    <div class="headbar">
+        <% if(currUser==c.a1.id) { %>
+            <p style="margin-bottom: 0;">
+                <img class ="prof" src="<%= c.a2.pic %>">
+                <span><%=c.a2.name%></span><br>
+                <a style="text-decoration: none; color:white" href="/home">Go to Home</a>
+            </p>
+        <%}else{%>
+            <p style="margin-bottom: 0;">
+                <img class ="prof" src="<%= c.a1.pic %>">
+                <span><%=c.a1.name%></span><br>
+                <a style="text-decoration: none; color:white" href="/home">Go to Home</a>
+            </p>
+        <%}%>
+    </div>
+    <div class="chatbubble">
+        <div class="author">harshit.srivastava2019@vitstudent.ac.in</div>
+        <p>Hey there buddy!</p>
+    </div>
+    <div class="chatbubble">
+        <div class="author">harshit0300@gmail.com</div>
+        <p>Wassup</p>
+    </div>
+    <div class="chatbubble">
+        <div class="author">harshit0300@gmail.com</div>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi vel, consequatur mollitia minus id ea delectus sed aspernatur porro distinctio minima, rem asperiores ab incidunt provident expedita sit blanditiis rerum.</p>
+    </div>
+    
+    <div class="msgbox">
+        <form>
+            <input id="msgbar" type="text" name="content" placeholder="Message">
+            <input id="send" type="submit" value="Send">
+        </form>
+    </div>
+    
+</div>
+<script>
+    window.onload = function() {
+        window.scrollTo(0,document.body.scrollHeight);
+    }
+</script>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var io = io(window.location.href);
+    socket.on('messageFromServer',(data)=>{
+        console.log(data);
+        socket.emit('messageToServer',{data:"This from Client"})
+    })
+</script>
+<%- include ('./partials/footer.ejs') %>

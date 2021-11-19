@@ -1,0 +1,18 @@
+<%- include ('./partials/header.ejs') %>
+<div>
+    <div class="headbar">
+        <h5>Select a Contact</h5>
+    </div>
+    <% u.forEach(function(us){ %>
+        <div class="contact">
+            <form method="get" action="/new/<%=us._id%>" onclick="submit()">
+                <img class ="prof" src="<%=us.google.picture%>">
+                <p>
+                    <%=us.name%>
+                    <br><%=us.email%>
+                </p>
+            </form>
+        </div>
+    <%});%>
+</div>
+<%- include ('./partials/footer.ejs') %>
