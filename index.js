@@ -20,10 +20,6 @@ app.use(express.static(path.join(__dirname + "/public")));
 mongoose.connect("mongodb+srv://Harshit:DqfAOzgQadYFYuIL@textchatapp.ef8gl.mongodb.net/TextChatApp?retryWrites=true&w=majority")
 require("./passport-setup.js");
 
-app.use(function (req, res, next) {
-  res.locals.currUser = req.user;
-  next();
-});
 app.use(
     require("express-session")({
       secret: "chatapp",
@@ -33,7 +29,10 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(function (req, res, next) {
+  res.locals.currUser = req.user;
+  next();
+});
 const isLoggedIn = (req, res, next) => {
     if (req.user) {
       next();
@@ -127,8 +126,24 @@ var port = process.env.PORT || 3000;
 const exserver= app.listen(port);
 const io = socketio(exserver);
 io.on("connection", function(socket){
-  socket.emit('messageFromServer',{data:"Welcome to server"});
-  socket.on('messageToServer',(dfromC)=>{
-    console.log(dfromC);
+  // socket.emit('messageFromServer',{data:"Welcome to server"});
+  socket.on('messageToServer',async(dfromC)=>{
+    var u = await User.findById(dfromC.uid);
+    var c = await Chat.findById(dfromC.cid);
+    var m = {
+      author:{
+        name:u.name,
+        email:u.email,
+        id:u._id
+      },
+      content:dfromC.content
+    }
+    var msg = new Message(m);
+    msg.save();
+    c.messages.push(msg);
+    c.timestamp = Date.now();
+    c.save();
+    console.log(socket.id);
+    io.to(dfromC.s).emit('messageFromServer',{msg});
   })
 });

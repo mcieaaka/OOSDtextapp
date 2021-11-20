@@ -91,6 +91,11 @@
     color:aqua;
     font-weight:bold;
     font-size: 0.75em;
-    max-width:100px;
+    max-width:200px;
+    overflow:hidden;
+}
+.timemsg{
+    color:black;
+    font-size: 0.75em;
     overflow:hidden;
 }
