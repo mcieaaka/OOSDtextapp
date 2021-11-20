@@ -15,7 +15,7 @@ passport.use(
       clientID:
         "634118630570-n3vphf3cnali1pbu0mgknfq8qmgvp6sa.apps.googleusercontent.com",
       clientSecret: "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",
-      callbackURL: "http://localhost:3000/google/callback",
+      callbackURL: "http://ec2-13-235-246-55.ap-south-1.compute.amazonaws.com:3000/google/callback",
     },
     function (accessToken, refreshToken, profile, cb) {
       User.findOne({
