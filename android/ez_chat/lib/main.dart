@@ -7,7 +7,8 @@ void main() {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: WebView(
-          initialUrl: "https://www.praveencsrivastava.com/", //My dad's website
+          initialUrl:
+              "http://ec2-13-235-246-55.ap-south-1.compute.amazonaws.com:3000/", //My dad's website
           javascriptMode: JavascriptMode.unrestricted,
         ),
       ),
