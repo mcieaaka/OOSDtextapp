@@ -2,7 +2,7 @@ window.onload = function() {
     window.scrollTo(0,document.body.scrollHeight);
 }
 
-var socket = io("http://ec2-13-235-246-55.ap-south-1.compute.amazonaws.com:4000");
+var socket = io("http://ec2-13-235-243-142.ap-south-1.compute.amazonaws.com:4000");
 socket.on('connect',()=>{
     console.log(socket.id);
 })
