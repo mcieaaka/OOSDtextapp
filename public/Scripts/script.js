@@ -2,7 +2,7 @@ window.onload = function() {
     window.scrollTo(0,document.body.scrollHeight);
 }
 
-var socket = io("http://localhost:3000");
+var socket = io("http://localhost:4000");
 socket.on('connect',()=>{
     console.log(socket.id);
 })

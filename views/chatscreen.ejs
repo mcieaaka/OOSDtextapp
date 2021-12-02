@@ -24,7 +24,7 @@
     <div id="allmsgdiv">
         <% if(c.messages.length>0){%>
             <%c.messages.forEach((el)=>{%>
-                <% if(el.author.id==currUser._id){%>
+                <% if(el.author.id==currUser.id){%>
                     <div class="chatbubble" style="margin-left:auto;">
                         <!-- <p class="author"><%=el.author.email%></p> -->
                         <p><%=el.content%></p>

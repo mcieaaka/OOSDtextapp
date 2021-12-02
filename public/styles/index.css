@@ -95,7 +95,15 @@
     overflow:hidden;
 }
 .timemsg{
+    max-width:200px;
     color:black;
     font-size: 0.75em;
     overflow:hidden;
+}
+td{
+    padding-bottom:15px;
+}
+.auth-ip{
+    border:0px;
+    border-bottom: 3px solid teal;
 }
